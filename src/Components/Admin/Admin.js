@@ -263,6 +263,11 @@ const Admin = () => {
         </Toolbar>
       </AppBar>
       {/* Add new user by admin dialgue */}
+      <Button
+      variant="contained"
+      onClick={()=>history.push("/admin")}
+      style={{marginLeft:"400px"}}
+      >Goto Admin dashboard</Button>
       <Dialog
         onClose={() => setOpenthree(false)}
         aria-labelledby="simple-dialog-title"

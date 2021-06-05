@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import {url} from "../Api/Api"
 import axios from "axios"
+import {useHistory} from "react-router-dom"
 import Typography from '@material-ui/core/Typography'
 import { Button, Dialog } from '@material-ui/core'
 const Users = () => {
@@ -11,6 +12,7 @@ const Users = () => {
    const [getted, setgetted] = useState([])
    const [open, setopen] = useState([])
    const [edited, setedited] = useState([])
+ const history = useHistory()
   //delete now
   const deleteNow =async(id)=>{
     try {
@@ -65,6 +67,7 @@ console.log(data);
              onClick={()=>updateNow(getted._id)}
              >update</button>
         </Dialog>
+        <Button variant="contained" onClick={()=>history.push("alltenders")}>Goto tender</Button>
            <Typography variant="h4" color="initial">GetAllUsers</Typography>
            {state.map((val)=>(
               <>

@@ -59,7 +59,7 @@ const deleteAllTendersForSingleUser = async (id) =>{
         open={open}
         onClose={()=>setopen(false)}
         >
-             
+             Goto console to check the response
         </Dialog>
              {loading?<h2 style={{textAlign:"center",marginTop:"50px"}}>loading...</h2>:
              state.map((val,index)=>
