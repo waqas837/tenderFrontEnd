@@ -11,17 +11,47 @@ const TenderDashboard = () => {
     const [update, setupdate] = useState([])
     const [tenders, settenders] = useState([])
     const [price, setprice] = useState()
+    const [bider, setbider] = useState("")
+    const [some, setsome] = useState([])
     
     var email =  localStorage.getItem("user")
-useEffect(()=>{
+    console.log(email);
+    useEffect(()=>{
     setprice({...price,bidderemail:email})
- },[])   
+    },[])   
+// get my bids
+async  function getmybids(){
+  try {
+      const {data} = await axios.get(`${url}/getmybids/${email}`)
+      console.log(data.data);
+     
+      
+    } catch (error) {
+      console.log(error)
+  }
+  
+}
+
+  // accecpt bid now
+  async  function accept(id){
+      const bid = {accepted:true}
+      console.log(id)
+    try {
+        // const {data} = await axios.post(`${url}/accept/${id}`,bid)
+        // console.log(data.data.tenderDetail[0].accepted)
+      } catch (error) {
+        console.log(error)
+    }
+    
+ }
 //check for hide an expired bid
-async function expiry(id){
+async function checkbidders(id){
     try {
         console.log(id);
-        // const {data} = await axios.post(`${url}/expirybid/${id}`)
+        const {data} = await axios.get(`${url}/getAllBidders/${id}`)
         // console.log(data)
+       const bidder = data.user.tenderDetail[1].bidderemail
+       setbider(bidder)
      } catch (error) {
         console.log(error)
     }  
@@ -144,7 +174,7 @@ function tConv24(time24) {
      variant="contained" color="primary">Get all tenders only</Button>
      <br />
      {/* profile updata */}
-
+ 
      profile update
      <Box>
              <FileBase type="file" multiple={false}
@@ -170,14 +200,24 @@ function tConv24(time24) {
          >Bid</Button>
          &nbsp;
          <Button
-          onClick={()=>expiry(val.tenderDetail[0]._id)}
+           onClick={()=>checkbidders(val.tenderDetail[0]._id)}
            variant="contained" color="secondary"
-         >Check for expire</Button>
+         >Check who has bidd?</Button>
+       
         </div>
+
     ))
 }
+<br />
+<br />
+are you a bidder?
+<Button 
+ onClick={ getmybids }
+ variant="contained" color="secondary">Get my bids</Button>
         </div>
     )
-}
+
+
+  }
 
 export default TenderDashboard;
