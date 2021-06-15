@@ -83,7 +83,7 @@ const Admin = () => {
   const classes = useStyles();
   const history = useHistory();
    
-  useEffect(() => {}, []);
+  
   const admin = localStorage.getItem("admin");
   const [state, setstate] = useState([]);
   const [stateS, setstateS] = useState([]);
@@ -177,8 +177,6 @@ const Admin = () => {
 
   // sent value of the tender and token from here to backend for verify
   
-
-
   //   array of an object
   function handleCloseTwo() {
     setOpentwo(false);
@@ -263,11 +261,7 @@ const Admin = () => {
         </Toolbar>
       </AppBar>
       {/* Add new user by admin dialgue */}
-      <Button
-      variant="contained"
-      onClick={()=>history.push("/admin")}
-      style={{marginLeft:"400px"}}
-      >Goto Admin dashboard</Button>
+
       <Dialog
         onClose={() => setOpenthree(false)}
         aria-labelledby="simple-dialog-title"

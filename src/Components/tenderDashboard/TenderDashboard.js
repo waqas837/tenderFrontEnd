@@ -2,6 +2,7 @@ import { Box, Button, Input } from '@material-ui/core'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import {url} from "../../Api/Api"
+import { Dialog,TableContainer,Container,Table,TableCell,TableRow,TableBody,TableHead,Paper,OutlinedInput,DialogActions,DialogTitle } from '@material-ui/core'
 import FileBase from 'react-file-base64';
 
 const TenderDashboard = () => {
@@ -187,7 +188,51 @@ function tConv24(time24) {
      variant="contained" color="primary">Upadte Profile</Button>
 
      {/* showing all tenders */}
-{
+
+
+     <Container>
+           <TableContainer component={Paper}>
+      <Table  aria-label="customized table">
+        <TableHead style={{background:"black",}}>
+          <TableRow >
+            <TableCell style={{color:"white",fontWeight:"bolder"}} >email</TableCell>
+            <TableCell style={{color:"white",fontWeight:"bolder"}}>Password</TableCell>
+            <TableCell style={{color:"white",fontWeight:"bolder"}}>Status</TableCell>
+            <TableCell style={{color:"white",fontWeight:"bolder"}}>Actions</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {tenders.map((row,index) => (
+            <TableRow key={index}>
+            <TableCell component="th" scope="row">
+                {row.email}
+              </TableCell>
+              <TableCell component="th" scope="row">
+                {row.password}
+              </TableCell>
+              <TableCell align="center">{row.status}</TableCell>
+              {/* <Button variant="contained" color="secondary"  onClick={()=>deleteNow(row._id)} align="center">Delete</Button> */}
+              {/* <Button variant="contained" color="primary" onClick={()=>editRecord(row._id)} align="center">Edit</Button> */}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+</Container>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* {
     tenders.map((val,index)=>(
         <div key={index}>
         <Input placeholder="price"
@@ -207,7 +252,7 @@ function tConv24(time24) {
         </div>
 
     ))
-}
+} */}
 <br />
 <br />
 are you a bidder?

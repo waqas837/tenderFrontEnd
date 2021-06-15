@@ -4,7 +4,7 @@ import logo from "../../images/logo.jpg";
 import {
   Home,
   CloseOutlined,
-  Group,
+  Group,Lock,LockOpen
 } from "@material-ui/icons";
 import {
   Box,
@@ -18,6 +18,8 @@ import {
 } from "@material-ui/core";
 const DrawerData = ({ opendrawer, setopendrawer }) => {
   const history = useHistory()
+  const admin = localStorage.getItem("admin")
+
   return (
     <div>
       <SwipeableDrawer
@@ -36,22 +38,35 @@ const DrawerData = ({ opendrawer, setopendrawer }) => {
               <CloseOutlined />
             </IconButton>
           </ListItem>
+          
           <Divider />
           {/* Home */}
-          <ListItem button>
+          {admin?<ListItem button  onClick={()=>history.push("/admin")}>
             <ListItemIcon>
-              <Home />
+              <LockOpen />
             </ListItemIcon>
-            <ListItemText primary="Home" />
+            <ListItemText primary="Admin Home" />
+          </ListItem>:<ListItem button  onClick={()=>history.push("/admin")}>
+            <ListItemIcon>
+              <Lock />
+            </ListItemIcon>
+            <ListItemText primary="Admin Home" />
+          </ListItem>}
+          
+          {/* all tenders*/}
+          {admin?<><ListItem button onClick={()=>history.push("/admin/alltenders")}>
+            <ListItemIcon>
+            <Group fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Show all tenders" />
           </ListItem>
-          {/* Add new user*/}
-          <ListItem button onClick={()=>history.push("/admin/users")}>
+     
+        <ListItem button onClick={()=>history.push("/admin/allusers")}>
             <ListItemIcon>
             <Group fontSize="small" />
             </ListItemIcon>
             <ListItemText primary="Users" />
-          </ListItem>
-       
+          </ListItem></>:null}
         </List>
       </SwipeableDrawer>
     </div>
