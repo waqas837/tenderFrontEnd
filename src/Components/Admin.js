@@ -47,7 +47,7 @@ const Admin = () => {
                       setstate({ ...state, email: e.target.value })
                     }
                     type="email"
-                    placeholder="email"
+                    placeholder="Enter email"
                     style={{ marginBottom: "10px" }}
                      required="true"
                   />
@@ -57,7 +57,7 @@ const Admin = () => {
                       setstate({ ...state, password: e.target.value })
                     }
                      type="password"
-                    placeholder="Update Confirm Password"
+                     placeholder="Enter password"
                   />
                   <br />
                   <Button
