@@ -9,6 +9,7 @@ import AllUsers  from "./Components/Users"
 import Dashboard from "./Components/UserDashboard/Dashboard"
 import ShowTenders from "./Components/ShowTenders"
 import Adminis from "./Components/Admin/Admin"
+import UpdateVerySingleTender from "./Components/updateSinlgleTender/UpdateVerySingleTender";
 const font = "'Roboto', sans-serif;";
 const theme = createMuiTheme({
   typography: {
@@ -47,7 +48,10 @@ function App() {
           <Route exact path="/admin/alltenders">
            <ShowTenders/>
           </Route>
-         
+           {/* get all tenders */}
+           <Route exact path="/admin/updateSingleTender/:_id/:email">
+           <UpdateVerySingleTender/>
+          </Route>
         </Router>
       </div>
     </ThemeProvider>

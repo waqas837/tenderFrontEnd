@@ -1,6 +1,6 @@
 import React from "react";
 import {useHistory} from "react-router-dom"
-import logo from "../../images/logo.jpg";
+import logo from "../../images/logo.jpeg";
 import {
   Home,
   CloseOutlined,

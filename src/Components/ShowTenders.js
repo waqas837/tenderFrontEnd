@@ -27,7 +27,7 @@ import { pink, grey } from "@material-ui/core/colors";
 import { url } from "../Api/Api";
 import DrawerData from "./DrawerData/DrawerData";
 import { useHistory } from "react-router-dom";
-import { Menu } from "@material-ui/icons";
+import { Menu,Delete } from "@material-ui/icons";
 
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
@@ -79,7 +79,12 @@ const ShowTenders = () => {
   const [showSingleAll, setshowSingleAll] = useState([]);
   const [opendrawer, setopendrawer] = useState(false);
   const [openfour, setopenfour] = useState(false);
+  const [email, setemail] = useState("");
   const history = useHistory();
+
+
+ 
+
 
   //get a single record for next to edit
   const editRecord = async (id) => {
@@ -113,8 +118,9 @@ const ShowTenders = () => {
     try {
       setopenfour(true);
       setloadingups(true);
-      const { data } = await axios.get(`${url}/showtenderdata/${email}`);
+      const { data } = await axios.get(`${url}/showTendersForSingleTender/${email}`);
       setposterdata(data.data);
+      setemail(data.email);
       console.log(data.data);
       setloadingups(false);
     } catch (error) {
@@ -319,9 +325,15 @@ const ShowTenders = () => {
                 <Divider />
                 <br />
                 <br />
-
                 {posterdata.map((val) =>
-                  val.tenderDetail.map((val) => <li>{val.title}</li>)
+                 <>
+                <li>{val._id}</li> 
+                {/* <Button size="small"
+                 onClick={()=>history.push(`/admin/updateSingleTender/${val._id}/${email}`)}
+                 variant="contained">Edit</Button> */}
+                  {/* <Button size="small"
+                 variant="contained"><Delete/></Button> */}
+                </>
                 )}
               </Grid>
             </Grid>
@@ -387,14 +399,14 @@ const ShowTenders = () => {
                     >
                       Delete
                     </Button>
-                    <Button
+                    {/* <Button
                       variant="contained"
                       color="primary"
                       onClick={() => getSingleTender(row._id)}
                       align="center"
                     >
                       Edit
-                    </Button>
+                    </Button> */}
                     <Button
                       variant="contained"
                       color="primary"

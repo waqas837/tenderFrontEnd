@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { grey } from "@material-ui/core/colors";
-import logo from "../../images/logo.jpg";
+import logo from "../../images/logo.jpeg";
 import {
   AddOutlined,
   MailOutline,
